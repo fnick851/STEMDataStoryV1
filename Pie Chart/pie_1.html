@@ -1,0 +1,184 @@
+<html>
+<meta charset="utf-8">
+<title>STEM Pie Chart - 1 </title>
+<div id="chartContainer">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
+
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 1100, 470);
+      d3.csv("data_pie_1.csv", function (data) {
+        var myChart = new dimple.chart(svg, data);
+        myChart.setMargins(150, 60, 200, 20)
+        x=myChart.addCategoryAxis("x", ["School characteristics"]);
+        x.addOrderRule(['Suburban', 'Urban', 'Rural', 'Town'])
+        y= myChart.addMeasureAxis("y", "stable");
+        x.hidden=true;
+        y.hidden=true;
+        y.overrideMin = 0;
+        y.overrideMax = 100;
+        y.ticks = 5;
+        myChart.addMeasureAxis("z", "Number of students enrolled in a school that offers grade 8 Algebra I")
+        myChart.addMeasureAxis("p", "Percentage of students enrolled in a school that offers grade 8 Algebra I");
+        var s = myChart.addSeries(["Category_percent"], dimple.plot.pie);
+        s.addOrderRule(['8th grader might skip', '8th grader could take'])
+        s.radius = 60;
+        // s.addEventHandler("mouseover", onHover);
+        // s.addEventHandler("mouseleave", onLeave);
+        myChart.defaultColors = [
+          new dimple.color("#F2F2F2"), //white
+          new dimple.color("#2EB4E7"),// blue
+           
+      ];
+
+        svg.append("text").attr("x", 245).attr("y", 135).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("At suburban schools");
+
+        svg.append("text").attr("x", 210).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("86%");
+        svg.append("text").attr("x", 243).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("of");
+        svg.append("text").attr("x", 279).attr("y", 310).style("text-anchor", "middle").style('font-weight', 'bold').style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("1.3M");
+        svg.append("text").attr("x", 250).attr("y", 335).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("8th graders could take");
+        svg.append("text").attr("x", 245).attr("y", 355).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("Algebra I")
+
+
+        svg.append("text").attr("x", 433).attr("y", 185).style("text-anchor", "middle").style("font-size", "16px").style("font-family", "Lato").style("opacity", 0.7).text("Urban");
+
+       svg.append("text").attr("x", 395).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("75%");
+       svg.append("text").attr("x", 428).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("of");
+       svg.append("text").attr("x", 464).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("798K");
+       svg.append("text").attr("x", 435).attr("y", 335).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("8th graders");
+
+        svg.append("text").attr("x", 615).attr("y", 215).style("text-anchor", "middle").style("font-size", "16px").style("font-family", "Lato").style("opacity", 0.7).text("Rural");
+
+        svg.append("text").attr("x", 585).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("75%");
+       svg.append("text").attr("x", 618).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("of");
+       svg.append("text").attr("x", 654).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("522K");
+       svg.append("text").attr("x", 625).attr("y", 335).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("8th graders");
+
+       svg.append("text").attr("x", 807).attr("y", 240).style("text-anchor", "middle").style("font-size", "16px").style("font-family", "Lato").style("opacity", 0.7).text("Town");
+
+       svg.append("text").attr("x", 775).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("76%");
+       svg.append("text").attr("x", 808).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("of");
+       svg.append("text").attr("x", 845).attr("y", 310).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style('font-weight', 'bold').style("color", "#474747 ").style("opacity", 0.7).text("313K");
+       svg.append("text").attr("x", 815).attr("y", 335).style("text-anchor", "middle").style("font-size", "18px").style("font-family", "Lato").style("color", "#474747 ").style("opacity", 0.7).text("8th graders");
+
+
+
+        myChart.draw();
+        
+        s.shapes
+        .style("stroke-color", "#07cff6")
+        .style("stroke-width", 1)
+        .style("opacity", 1);
+
+      //      function onHover(e) {
+      //       // console.log(e.seriesValue[0])
+
+      //       var path = e.selectedShape._groups[0][0];
+      //       var d3path = d3.select(path);
+      //       var box = d3path.node().getBBox();
+
+
+
+      //     if(box["y"] == -25.990745544433594){
+      //       cx=160
+      //       cy=20
+      //     }
+
+      //     if(box["y"] == -60){
+      //       cx=300
+      //       cy=50
+      //     }
+
+      //     if(box["y"] == -16.436193466186523){
+      //       cx=440
+      //       cy=10
+      //     }
+
+      //     if(box["y"] == -38.62356948852539){
+      //       cx=580
+      //       cy=30
+      //     }
+
+
+
+      //       fill = e.selectedShape.attr("fill"),
+      //       stroke = e.selectedShape.attr("stroke");
+            
+      //   // Set the size and position of the popup
+      //       x = cx
+      //       y = cy
+
+      //   // popup = svg.append("g");
+
+      //   // popup
+      //   //   .append("text")
+      //   //   .attr("x", x + 10) 
+      //   //   .attr("y", y + 215)
+      //   //   .text(d3.format(",.1f")(e.pValue))
+      //   //   .style("font-family", "Lato")
+      //   //   .style("font-size", 14)
+      //   //   .style('font-weight', 'bold')
+      //   //   .style("fill", "black");
+
+      //   // popup
+      //   //   .append("text")
+      //   //   .attr("x", x + 45) 
+      //   //   .attr("y", y + 215)
+      //   //   .text("% of ")
+      //   //   .style("font-family", "Lato")
+      //   //   .style("font-size", 14)
+      //   //   .style("fill", "black");
+
+      //   // popup
+      //   //   .append("text")
+      //   //   .attr("x", x + 75) 
+      //   //   .attr("y", y + 215)
+      //   //   .text(d3.format(".2s")(e.zValue))
+      //   //   .style("font-family", "Lato")
+      //   //   .style("font-size", 14)
+      //   //   .style('font-weight', 'bold')
+      //   //   .style("fill", "black");
+
+      //   // popup
+      //   //   .append("text")
+      //   //   .attr("x", x + 0) 
+      //   //   .attr("y", y + 240)
+      //   //   .text(e.seriesValue[0])
+      //   //   .style("font-family", "Lato")
+      //   //   .style("font-size", 14)
+      //   //   .style("fill", "black");
+
+      //   // popup
+      //   //   .append("text")
+      //   //   .attr("x", x + 33) 
+      //   //   .attr("y", y + 265)
+      //   //   .text("Algebra I")
+      //   //   .style("font-family", "Lato")
+      //   //   .style("font-size", 14)
+      //   //   .style("fill", "black");
+
+
+      //   var hoverData = []
+        
+      //    tipChart = new dimple.chart(svg,  hoverData);
+                
+        
+      // };
+            // Event to handle mouse exit
+      // function onLeave(e) {
+      //   // Remove the chart
+      //   if (tipChart !== null) {
+      //     tipChart._group.remove();
+      //   }
+      //   // Remove the popup
+      //   if (popup !== null) {
+      //     popup.remove();
+      //   }
+      // };
+
+      })
+
+
+
+</script>

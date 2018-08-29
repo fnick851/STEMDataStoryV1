@@ -1,0 +1,206 @@
+<html>
+<meta charset="utf-8">
+<title>STEM Pie Chart - 1 </title>
+<div id="chartContainer">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="dimple.v2.3.0.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
+
+  <script type="text/javascript">
+    var svg = dimple.newSvg("#chartContainer", 1200, 490);
+      d3.csv("data_pie_2.csv", function (data) {
+        var myChart = new dimple.chart(svg, data);
+        myChart.setMargins(150, 90, 300, 20)
+        x=myChart.addCategoryAxis("x", ["School characteristics"]);
+        y= myChart.addMeasureAxis("y", "stable");
+        x.hidden=true;
+        y.hidden=true;
+        y.overrideMin = 0;
+        y.overrideMax = 100;
+        y.ticks = 5;
+        z= myChart.addLogAxis("z", "Number of students enrolled in a school that offers grade 8 Algebra I")
+        // z.overrideMin = 0;
+        // z.overrideMax = 600000;
+        
+        myChart.addMeasureAxis("p", "Percentage of students enrolled in a school that offers grade 8 Algebra I");
+        var s = myChart.addSeries(["Category_percent"], dimple.plot.pie);
+        s.radius = 40;
+        s.addEventHandler("mouseover", onHover);
+        s.addEventHandler("mouseleave", onLeave);
+        myChart.defaultColors = [
+          new dimple.color("#2EB4E7"),// blue
+          new dimple.color("#F2F2F2") //white
+      ];
+        svg.append("text")
+          .attr("x", 225)
+          .attr("y", 50)
+          .style("text-anchor", "middle")
+          .style("font-size", "18px")
+          .style("font-family", "Lato")
+          .style("color", "#474747 ")
+          .style("opacity", 0.7)
+          .text("At Charter");
+
+
+        svg.append("text")
+          .attr("x", 375)
+          .attr("y", 45)
+          .style("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-family", "Lato")
+          .style("opacity", 0.7)
+          .text("Magnet");
+
+
+        svg.append("text")
+          .attr("x", 525)
+          .attr("y", 45)
+          .style("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-family", "Lato")
+          .style("opacity", 0.7)
+          .text("Alt");
+
+
+        svg.append("text")
+          .attr("x", 675)
+          .attr("y", 40)
+          .style("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-family", "Lato")
+          .style("opacity", 0.7)
+          .text("Sped");
+
+        svg.append("text")
+          .attr("x", 825)
+          .attr("y", 55)
+          .style("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-family", "Lato")
+          .style("opacity", 0.7)
+          .text("Regular");
+
+        myChart.draw();
+
+        s.shapes
+        .style("stroke-color", "#07cff6")
+        .style("stroke-width", 1)
+        .style("opacity", 1);
+
+                   function onHover(e) {
+
+            var path = e.selectedShape._groups[0][0];
+            var d3path = d3.select(path);
+            var box = d3path.node().getBBox();
+                        console.log(box["y"])
+
+cx=10
+cy=15
+
+          if(box["y"] == -27.762359619140625){
+            cx=170
+            cy=-70
+          }
+
+          if(box["y"] == -33.37394332885742){
+            cx=320
+            cy=-70
+          }
+
+          if(box["y"] == -34.16175842285156 | box["y"]== -34.16176223754883){
+            cx=470
+            cy=-70
+          }
+
+          if(box["y"] == -40){
+            cx=620
+            cy=-65
+          }
+
+          if(box["y"] == -23.555644989013672){
+            cx=780
+            cy=-80
+          }
+
+
+
+            fill = e.selectedShape.attr("fill"),
+            stroke = e.selectedShape.attr("stroke");
+            
+        // Set the size and position of the popup
+            x = cx
+            y = cy
+
+        popup = svg.append("g");
+
+        popup
+          .append("text")
+          .attr("x", x + 10) 
+          .attr("y", y + 215)
+          .text(d3.format(",.1f")(e.pValue))
+          .style("font-family", "Lato")
+          .style("font-size", 14)
+          .style('font-weight', 'bold')
+          .style("fill", "black");
+
+        popup
+          .append("text")
+          .attr("x", x + 39) 
+          .attr("y", y + 215)
+          .text("% of ")
+          .style("font-family", "Lato")
+          .style("font-size", 14)
+          .style("fill", "black");
+
+        popup
+          .append("text")
+          .attr("x", x + 75) 
+          .attr("y", y + 215)
+          .text(d3.format(".2s")(e.zValue))
+          .style("font-family", "Lato")
+          .style("font-size", 14)
+          .style('font-weight', 'bold')
+          .style("fill", "black");
+
+        popup
+          .append("text")
+          .attr("x", x + 0) 
+          .attr("y", y + 240)
+          .text(e.seriesValue[0])
+          .style("font-family", "Lato")
+          .style("font-size", 14)
+          .style("fill", "black");
+
+        popup
+          .append("text")
+          .attr("x", x + 33) 
+          .attr("y", y + 265)
+          .text("Algebra I")
+          .style("font-family", "Lato")
+          .style("font-size", 14)
+          .style("fill", "black");
+
+
+        var hoverData = []
+        
+         tipChart = new dimple.chart(svg,  hoverData);
+                
+        
+      };
+            // Event to handle mouse exit
+      function onLeave(e) {
+        // Remove the chart
+        if (tipChart !== null) {
+          tipChart._group.remove();
+        }
+        // Remove the popup
+        if (popup !== null) {
+          popup.remove();
+        }
+      };
+
+      })
+
+
+
+</script>

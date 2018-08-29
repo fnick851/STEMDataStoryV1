@@ -1,0 +1,11 @@
+grade,School characteristics,Total number of grade 8 students,Number of students enrolled in a school that offers grade 8 Algebra I,Percentage of students enrolled in a school that offers grade 8 Algebra I,Category_percent,stable
+Grade 8,Charter,128807,123568,95.93,8th grader could take,70
+Grade 8,Magnet,179127,177458,99.07,8th grader could take,70
+Grade 8,Alt,10043,9381,93.41,8th grader could take,70
+Grade 8,Sped,1675,1358,81.07,8th grader could take,70
+Grade 8,Regular,2630971,2594042,98.6,8th grader could take,70
+Grade 8,Charter,128807,123568,4.07,8th grader might skip,70
+Grade 8,Magnet,179127,177458,0.93,8th grader might skip,70
+Grade 8,Alt,10043,9381,6.59,8th grader might skip,70
+Grade 8,Sped,1675,1358,18.93,8th grader might skip,70
+Grade 8,Regular,2630971,2594042,1.4,8th grader might skip,70
