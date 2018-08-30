@@ -8,7 +8,6 @@ function resizeIframe(obj) {
 
     var content_width = obj.contentWindow.document.body.scrollWidth;
     var content_height = obj.contentWindow.document.body.style.height ? obj.contentWindow.document.body.style.height.replace("px", "") : obj.contentWindow.document.body.scrollHeight;
-    console.log(content_height);
 
     // set iframe size&dimension to just fit the actual content
     obj.style.width = content_width + "px";
